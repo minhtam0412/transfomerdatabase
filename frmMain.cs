@@ -17,8 +17,13 @@ namespace TrasnformerDB
 {
     public partial class frmMain : Form
     {
+        //chuỗi kết nối
         const string CONN_STR = @"Data Source=10.12.1.106:1521/erpdb01.nc.com;User ID=ERP;Password=RgVbstgs32Tg252Tf;Unicode=True;Pooling=false;Max Pool Size=1024";
+
+        //Dữ liệu đã được chuẩn hoá, sẵn sàng cho việc gửi lên http://www.sqlines.com/online
         List<string> lstStandardData = new List<string>();
+
+        //dữ liệu thô được lấy từ database
         List<string> lstSource = new List<string>();
 
         public frmMain()
@@ -31,6 +36,9 @@ namespace TrasnformerDB
             CheckConnection();
         }
 
+        /// <summary>
+        /// Kiểm tra kết nối tới DB
+        /// </summary>
         private void CheckConnection()
         {
             IData objIData = Library.DataAccess.Data.CreateData(CONN_STR, false);
@@ -49,6 +57,11 @@ namespace TrasnformerDB
             }
         }
 
+        /// <summary>
+        /// Lấy thông tin scritp Create Table
+        /// </summary>
+        /// <param name="strTableName">Table cần lấy script</param>
+        /// <returns></returns>
         private string GetDataTable(string strTableName)
         {
             string strRsl = string.Empty;

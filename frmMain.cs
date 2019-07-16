@@ -75,7 +75,7 @@ namespace TrasnformerDB
             }
             catch (Exception objEx)
             {
-                new ResultMessage(true, Library.WebCore.SystemError.ErrorTypes.LoadInfo, "Lỗi lấy thông tin", objEx.ToString());
+                return objEx.Message;
             }
             finally
             {
@@ -108,6 +108,12 @@ namespace TrasnformerDB
             txtSource.Text = strSource.ToString();
         }
 
+        /// <summary>
+        /// Thực hiện chuẩn hoá dữ liệu
+        /// Loại bỏ các schemas như ERP.
+        /// </summary>
+        /// <param name="strSource"></param>
+        /// <returns></returns>
         private string StardardData(string strSource)
         {
             string strRsl = string.Empty;
